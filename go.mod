@@ -1,4 +1,4 @@
-module github.com/hasegit/site_modify_checker
+module github.com/hasegit/site_update_checker
 
 go 1.17
 
