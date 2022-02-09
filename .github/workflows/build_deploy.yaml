@@ -41,7 +41,7 @@ jobs:
         aws lambda create-function
         --function-name site_update_checker
         --zip-file fileb://function.zip
-        --handler lambda_function.lambda_handler
+        --handler site_update_checker
         --runtime go1.x
         --role ${{ secrets.AWS_ARN_ROLE }}
         --timeout 10
