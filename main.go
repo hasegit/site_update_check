@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-lambda-go/lambda"
 )
@@ -11,11 +10,13 @@ type Event struct {
 	Url string `json:"url"`
 }
 
-func HandleRequest(ctx context.Context, e Event) (bool, error) {
-	fmt.Printf("%#v", ctx)
-	fmt.Printf("%#v", e)
+type Response struct {
+	Result int `json:"result"`
+}
+
+func HandleRequest(ctx context.Context, e Event) (Response, error) {
 	result, _ := checker(e.Url)
-	return result, nil
+	return Response{Result: result}, nil
 }
 
 func main() {

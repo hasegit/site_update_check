@@ -5,11 +5,11 @@ import (
 	"time"
 )
 
-func checker(url string) (bool, error) {
+func checker(url string) (int, error) {
 	//url := "http://xml.kishou.go.jp/revise.html"
 	resp, err := http.Get(url)
 	if err != nil {
-		return false, err
+		return 2, err
 	}
 	defer resp.Body.Close()
 
@@ -23,13 +23,13 @@ func checker(url string) (bool, error) {
 	modified := resp.Header["Last-Modified"][0]
 	modified_date, err := time.Parse(time.RFC1123, modified)
 	if err != nil {
-		return false, err
+		return 2, err
 	}
 
 	// 更新日が過去24時間に収まっている場合は更新ありと判断
 	if start.Before(modified_date) && end.After(modified_date) {
-		return true, nil
+		return 0, nil
 	} else {
-		return false, nil
+		return 1, nil
 	}
 }
