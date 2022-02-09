@@ -11,8 +11,8 @@ type Event struct {
 }
 
 func HandleRequest(ctx context.Context, e Event) (bool, error) {
-	a, _ := checker("http://xml.kishou.go.jp/revise.html")
-	return a, nil
+	result, _ := checker(e.Url)
+	return result, nil
 }
 
 func main() {

@@ -1,2 +1,2 @@
-# site_pinger
+# site_update_checker
 check site's "last modified"
